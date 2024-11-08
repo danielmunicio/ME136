@@ -105,3 +105,4 @@ void PrintStatus() {
   // Print calculated estimated pitch
   printf("Estimated Pitch: %6.3f\n", (double)(estPitch));
 }
+
