@@ -62,9 +62,13 @@ MainLoopOutput MainLoop(MainLoopInput const &in) {
   lastMainLoopInputs.imuMeasurement.rateGyro = in.imuMeasurement.rateGyro;
 
   // Estimate Roll Pitch and Yaw using corrected integrator and accelerometer measurements
-  estPitch = (1 - rho) * (estPitch + dt * rateGyro_corr.y) +  rho* (-1 * (in.imuMeasurement.accelerometer.y / gravity));
+  float phiMeasured = in.imuMeasurement.accelerometer.y / gravity;
+  float thetaMeasured = -1.0f * in.imuMeasurement.accelerometer.x / gravity;
+
+  estPitch = (1.0f - rho) * (estPitch + dt * rateGyro_corr.y) +  (rho * thetaMeasured);
+  estRoll = (1.0f - rho) * (estRoll + dt * rateGyro_corr.x) + (rho * phiMeasured);
   estYaw = estYaw + dt * rateGyro_corr.z;
-  estRoll = (1 - rho) * (estPitch + dt * rateGyro_corr.y) + rho* (in.imuMeasurement.accelerometer.y / gravity);
+
 
   // Log values in the Log output folder
   outVals.telemetryOutputs_plusMinus100[0] = estRoll;
