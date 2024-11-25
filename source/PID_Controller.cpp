@@ -20,3 +20,7 @@ int main () {
         std::cout << "Here is the product of input vector by the mixermatrix \n" << mixerMatrix * inputVector << std::endl;
         return 0;
 }
+
+std::vector<int> calculateMotorCommands(MainLoopInput const &in) {
+    return {1, 2, 3, 4};
+}
