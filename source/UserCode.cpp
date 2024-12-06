@@ -84,8 +84,8 @@ MainLoopOutput MainLoop(MainLoopInput const &in) {
   // -----------------------------------------------------------------------------------
   // Use the first second to calibrate the Gyroscope
   // Get the approx error by averaging Gyroscope readings from the first second (dt = 1/500)
-  if (in.currentTime < 1.0f) {
-	estGyroBias = estGyroBias + (in.imuMeasurement.rateGyro / 500.0f);
+  if (in.currentTime < 10.0f) {
+	estGyroBias = estGyroBias + (in.imuMeasurement.rateGyro / 5000.0f);
   }
   // Correct Gyroscope value by subtracting Bias
   Vec3f rateGyro_corr = in.imuMeasurement.rateGyro - estGyroBias;
