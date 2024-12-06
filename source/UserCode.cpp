@@ -3,7 +3,7 @@
 #include "Vec3f.hpp"
 
 #include <stdio.h> //for printf
-
+#include <iostream>
 //An example of a variable that persists beyond the function call.
 float exampleVariable_float = 0.0f;  //Note the trailing 'f' in the number. This is to force single precision floating point.
 Vec3f exampleVariable_Vec3f = Vec3f(0, 0, 0);
@@ -148,6 +148,11 @@ MainLoopOutput MainLoop(MainLoopInput const &in) {
   	lastHeightMeas_time = in.currentTime;
 	}
   }
+
+  // Define State Vector to be roll pitch yaw z for now 
+  std::vector<float> stateVector(estPitch, estRoll, estYaw, estHeight);
+
+  //motorInputs = 
   // --------------------------------------------------------------------------
 
   // Horizontal State Estimation
